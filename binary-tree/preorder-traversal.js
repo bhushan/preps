@@ -19,19 +19,14 @@ const preorderTraversal = (root) => {
   preorderTraversal(root.right);
 };
 
-const execute = (nodes) => {
-  let tree = new BinaryTree();
-
-  let root = tree.build(nodes);
-
-  preorderTraversal(root);
-};
-
 const preorderSequencedArray = [1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1];
+
+let tree = new BinaryTree();
+let root = tree.build(preorderSequencedArray);
 
 //   1
 //  2  3
 // 4 5  6
 
 // output: 1 2 4 5 3 6
-console.log({ root: execute(preorderSequencedArray) });
+preorderTraversal(root);
