@@ -22,4 +22,4 @@ const count = (root) => {
 //  2  3
 // 4 5  6
 // output: 6
-console.log({ count: count(root) });
+console.log({ result: count(root), expected: 6 });
