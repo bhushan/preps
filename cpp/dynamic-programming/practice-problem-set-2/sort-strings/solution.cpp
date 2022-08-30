@@ -27,10 +27,11 @@ int rec(int index, int isPrevReverse){
     if(isPrevReverse) {
         reverse(prev.begin(),prev.end());
     }
-    if(curr.compare(prev)>0) {
+        
+    if(curr.compare(prev)>=0) {
         ans = min(ans, rec(index+1,0));
     }
-    if(currRev.compare(prev)>0){
+    if(currRev.compare(prev)>=0){
         ans = min(ans, cost[index]+ rec(index+1,1));
     }
     return dp[index][isPrevReverse] = ans;
