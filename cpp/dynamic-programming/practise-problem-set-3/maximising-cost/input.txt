@@ -1,0 +1,16 @@
+3
+akcbd 2
+3
+a d 55
+b z 100
+b c 50
+srtlmx 2
+2
+e a -167
+c v -932
+abcd 2
+4
+x y 10
+y z 100
+a x -150
+z d -150
