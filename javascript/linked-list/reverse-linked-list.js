@@ -10,7 +10,6 @@ const SinglyLinkedList = require("./SinglyLinkedList");
 const dataNodes = [1, 2, 3, 4, 5];
 
 const list = new SinglyLinkedList();
-const head = list.build(dataNodes);
 
 const reverseIterativeApproach = (head) => {
   if (head === null || head.next === null) {
@@ -42,7 +41,15 @@ const reverseIterativeApproach = (head) => {
 // Expected Linked List NULL <- 1 <- 2 <- 3 <- 4 <- 5
 // ie Linked List 5 -> 4 -> 3 -> 2 -> 1 -> NULL
 console.log({
-  result: JSON.stringify(reverseIterativeApproach(head), null, 4),
+  result: JSON.stringify(
+    reverseIterativeApproach(list.build(dataNodes)),
+    null,
+    4
+  ),
+});
+
+console.log({
+  result: JSON.stringify(reverseIterativeApproach(list.build([1])), null, 4),
 });
 
 console.log({
@@ -50,8 +57,30 @@ console.log({
   result: JSON.stringify(reverseIterativeApproach(null), null, 4),
 });
 
-const singleNodeList = list.build([1]);
+const reverseRecursiveApproach = (head) => {
+  if (head === null || head.next === null) {
+    return head;
+  }
+
+  const newHead = reverseRecursiveApproach(head.next);
+  head.next.next = head;
+  head.next = null;
+
+  return newHead;
+};
 
 console.log({
-  result: JSON.stringify(reverseIterativeApproach(singleNodeList), null, 4),
+  result: JSON.stringify(
+    reverseRecursiveApproach(list.build(dataNodes)),
+    null,
+    4
+  ),
+});
+
+console.log({
+  result: JSON.stringify(reverseRecursiveApproach(list.build([1])), null, 4),
+});
+
+console.log({
+  result: JSON.stringify(reverseRecursiveApproach(null), null, 4),
 });
