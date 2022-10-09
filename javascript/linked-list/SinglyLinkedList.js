@@ -7,7 +7,7 @@ class Node {
 
 module.exports = class SinglyLinkedList {
   build(nodes) {
-    if (nodes === null) {
+    if (nodes === null || !Array.isArray(nodes)) {
       return null;
     }
 
