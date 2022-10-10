@@ -9,8 +9,6 @@
 const { Node, SinglyLinkedList, printNodes } = require("./SinglyLinkedList");
 
 const list = new SinglyLinkedList();
-const list1 = list.build([1, 2, 4]);
-const list2 = list.build([1, 3, 4]);
 
 // T: O(n), S: O(n)
 const mergeSortedListsWithExtraSpace = (list1, list2) => {
@@ -54,7 +52,49 @@ const mergeSortedListsWithExtraSpace = (list1, list2) => {
   return start.next;
 };
 
+let list1 = list.build([1, 2, 4]);
+let list2 = list.build([1, 3, 4]);
+
 console.log({
+  complexity: "T: O(n) S: O(n)",
   expected: "1->1->2->3->4->4->null",
   result: printNodes(mergeSortedListsWithExtraSpace(list1, list2)),
+});
+
+// T: O(n), S: O(1)
+const mergeSortedLists = (list1, list2) => {
+  if (list1 === null) {
+    return list2;
+  }
+
+  if (list2 === null) {
+    return list1;
+  }
+
+  // we will make sure we always make list1 as low
+  if (list2.data < list1.data) {
+    [list1, list2] = [list2, list1];
+  }
+
+  const result = list1;
+  while (list1 !== null && list2 !== null) {
+    let temp = new Node(null);
+    while (list1 !== null && list1.data <= list2.data) {
+      temp = list1;
+      list1 = list1.next;
+    }
+    temp.next = list2;
+    [list1, list2] = [list2, list1];
+  }
+
+  return result;
+};
+
+list1 = list.build([1, 2, 4]);
+list2 = list.build([1, 3, 4]);
+
+console.log({
+  complexity: "T: O(n) S: O(1)",
+  expected: "1->1->2->3->4->4->null",
+  result: printNodes(mergeSortedLists(list1, list2)),
 });
