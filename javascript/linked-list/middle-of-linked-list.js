@@ -8,48 +8,45 @@
 // Output: [4,5,6]
 // Explanation: Since the list has two middle nodes with values 3 and 4, we return the second one.
 
+const SinglyLinkedList = require("./SinglyLinkedList");
+
+const list = new SinglyLinkedList();
+
+// T: O(n/2) S: O(1)
 // 1 -> 2 -> 3 -> 4 -> Null
 // 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> NULL
 // if we have even nodes then choose the second middle (4/2 + 4%2 + 1)
 // 1 -> 2 -> 3 -> 4 -> 5 -> NULL
 // if we have odd nodes count then choose the exact middle 5/2 + 5%2
-
-const SinglyLinkedList = require("./SinglyLinkedList");
-
-const dataNodes = [1, 2, 3, 4, 5];
-
-const list = new SinglyLinkedList();
-
-// T: O(n + n/2) S: O(1)
-const getMiddleNodeBruteForce = (head) => {
+const getMiddleNode = (head) => {
   if (head === null || head.next === null) {
     return head;
   }
 
-  let length = 0;
+  // rabbit jumps 2 steps at the time
+  // tortoise jumps 1 step at the time
+  // as soon as rabbit reaches the end toirtoise reaches to the middle
+  let rabbit = head,
+    tortoise = head;
 
-  let currentHead = head;
-  while (currentHead !== null) {
-    currentHead = currentHead.next;
-    length++;
+  while (rabbit !== null) {
+    if (rabbit.next === null) {
+      break;
+    }
+
+    tortoise = tortoise.next;
+    rabbit = rabbit.next.next;
   }
 
-  let centerPosition = Math.floor(length / 2) + (length % 2);
-
-  if (length % 2 === 0) {
-    centerPosition++;
-  }
-
-  let centerNode = head;
-
-  for (let index = 0; index < centerPosition; index++) {
-    centerNode = centerNode.next;
-  }
-
-  return centerNode;
+  return tortoise;
 };
 
 console.log({
-  expected: "4->5",
-  result: JSON.stringify(getMiddleNodeBruteForce(list.build(dataNodes))),
+  expected: "3->4->5",
+  result: JSON.stringify(getMiddleNode(list.build([1, 2, 3, 4, 5]))),
+});
+
+console.log({
+  expected: "4->5->6",
+  result: JSON.stringify(getMiddleNode(list.build([1, 2, 3, 4, 5, 6]))),
 });
