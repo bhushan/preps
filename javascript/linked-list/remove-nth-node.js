@@ -5,7 +5,7 @@
 // Output: [1,2,3,5]
 // 4 is deleted from linked list
 
-const SinglyLinkedList = require("./SinglyLinkedList");
+const { SinglyLinkedList, printNodes } = require("./SinglyLinkedList");
 
 const list = new SinglyLinkedList();
 
@@ -41,15 +41,6 @@ const deleteNode = (head, n) => {
   // return head because objects are referenced, so deleting from tortoise effects head,
   // in Java or CPP use pointers
   return head;
-};
-
-const printNodes = (head) => {
-  let output = "";
-  while (head !== null) {
-    output += head.data + "->";
-    head = head.next;
-  }
-  return output + "null";
 };
 
 console.log({

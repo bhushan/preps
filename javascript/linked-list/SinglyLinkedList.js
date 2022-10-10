@@ -1,11 +1,20 @@
-class Node {
+const Node = class Node {
   constructor(data) {
     this.data = data;
     this.next = null;
   }
-}
+};
 
-module.exports = class SinglyLinkedList {
+const printNodes = (head) => {
+  let output = "";
+  while (head !== null) {
+    output += head.data + "->";
+    head = head.next;
+  }
+  return output + "null";
+};
+
+const SinglyLinkedList = class SinglyLinkedList {
   build(nodes) {
     if (nodes === null || !Array.isArray(nodes)) {
       return null;
@@ -29,4 +38,10 @@ module.exports = class SinglyLinkedList {
 
     return head;
   }
+};
+
+module.exports = {
+  Node,
+  SinglyLinkedList,
+  printNodes,
 };

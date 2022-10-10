@@ -5,9 +5,7 @@
 // As we can see we just needs to reverse arrows (in simple words).
 // We will be given the head node ie. 1, we need to simple return head node only ie. 5
 
-const SinglyLinkedList = require("./SinglyLinkedList");
-
-const dataNodes = [1, 2, 3, 4, 5];
+const { SinglyLinkedList, printNodes } = require("./SinglyLinkedList");
 
 const list = new SinglyLinkedList();
 
@@ -41,20 +39,18 @@ const reverseIterativeApproach = (head) => {
 // Expected Linked List NULL <- 1 <- 2 <- 3 <- 4 <- 5
 // ie Linked List 5 -> 4 -> 3 -> 2 -> 1 -> NULL
 console.log({
-  result: JSON.stringify(
-    reverseIterativeApproach(list.build(dataNodes)),
-    null,
-    4
-  ),
+  expected: "5->4->3->2->1->null",
+  result: printNodes(reverseIterativeApproach(list.build([1, 2, 3, 4, 5]))),
 });
 
 console.log({
-  result: JSON.stringify(reverseIterativeApproach(list.build([1])), null, 4),
+  expected: "1->null",
+  result: printNodes(reverseIterativeApproach(list.build([1]))),
 });
 
 console.log({
   expected: "null",
-  result: JSON.stringify(reverseIterativeApproach(null), null, 4),
+  result: printNodes(reverseIterativeApproach(null)),
 });
 
 const reverseRecursiveApproach = (head) => {
@@ -70,17 +66,16 @@ const reverseRecursiveApproach = (head) => {
 };
 
 console.log({
-  result: JSON.stringify(
-    reverseRecursiveApproach(list.build(dataNodes)),
-    null,
-    4
-  ),
+  expected: "5->4->3->2->1->null",
+  result: printNodes(reverseRecursiveApproach(list.build([1, 2, 3, 4, 5]))),
 });
 
 console.log({
-  result: JSON.stringify(reverseRecursiveApproach(list.build([1])), null, 4),
+  expected: "1->null",
+  result: printNodes(reverseRecursiveApproach(list.build([1]))),
 });
 
 console.log({
-  result: JSON.stringify(reverseRecursiveApproach(null), null, 4),
+  expected: "null",
+  result: printNodes(reverseRecursiveApproach(null)),
 });

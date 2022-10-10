@@ -8,7 +8,7 @@
 // Output: [4,5,6]
 // Explanation: Since the list has two middle nodes with values 3 and 4, we return the second one.
 
-const SinglyLinkedList = require("./SinglyLinkedList");
+const { SinglyLinkedList, printNodes } = require("./SinglyLinkedList");
 
 const list = new SinglyLinkedList();
 
@@ -42,11 +42,11 @@ const getMiddleNode = (head) => {
 };
 
 console.log({
-  expected: "3->4->5",
-  result: JSON.stringify(getMiddleNode(list.build([1, 2, 3, 4, 5]))),
+  expected: "3->4->5->null",
+  result: printNodes(getMiddleNode(list.build([1, 2, 3, 4, 5]))),
 });
 
 console.log({
-  expected: "4->5->6",
-  result: JSON.stringify(getMiddleNode(list.build([1, 2, 3, 4, 5, 6]))),
+  expected: "4->5->6->null",
+  result: printNodes(getMiddleNode(list.build([1, 2, 3, 4, 5, 6]))),
 });

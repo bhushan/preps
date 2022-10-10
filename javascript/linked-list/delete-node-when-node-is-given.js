@@ -18,7 +18,7 @@
 // We will build the linked list and pass the node to your function.
 // The output will be the entire list after calling your function.
 
-const SinglyLinkedList = require("./SinglyLinkedList");
+const { SinglyLinkedList, printNodes } = require("./SinglyLinkedList");
 
 const list = new SinglyLinkedList();
 const head = list.build([1, 2, 3, 4, 5]);
@@ -27,15 +27,6 @@ const deleteNode = (node) => {
   node.data = node.next.data;
   node.next = node.next.next;
   return head;
-};
-
-const printNodes = (head) => {
-  let output = "";
-  while (head !== null) {
-    output += head.data + "->";
-    head = head.next;
-  }
-  return output + "null";
 };
 
 console.log({
