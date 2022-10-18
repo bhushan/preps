@@ -16,8 +16,6 @@ const { SinglyLinkedList, printNodes } = require("./SinglyLinkedList");
 
 const list = new SinglyLinkedList();
 
-const head = list.build([1, 2, 3, 4, 5, 6]);
-
 // attaches node at the end of the linked list
 const makeCycle = (head, node) => {
   const start = head;
@@ -51,7 +49,9 @@ const hasCycle = (head) => {
   return false;
 };
 
+const head = list.build([1, 2, 3, 4, 5, 6]);
 const cyclicLinkedListHead = makeCycle(head, head.next.next);
+
 const acyclicLinkedListHead = list.build([1, 2, 3, 4, 5, 6]);
 
 console.log({
