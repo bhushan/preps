@@ -2,12 +2,6 @@
 
 let BinaryTree = require("./BinaryTree");
 
-const preorderSequencedArray = [1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1];
-
-const tree = new BinaryTree();
-const root = tree.build(preorderSequencedArray);
-const level = 3;
-
 // Create a queue and push root element and null value to it.
 // Why null because whenever we get null from queue, we will assume that all the elements from the level are printed
 // Initialize counter to 1 because we are already at first level
@@ -56,6 +50,12 @@ function levelOrderTraversal(root, level) {
 //   1
 //  2  3
 // 4 5  6
+
+const preorderSequencedArray = [1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1];
+
+const tree = new BinaryTree();
+const root = tree.build(preorderSequencedArray);
+const level = 3;
 
 // output: 4 5 6 of level 3
 levelOrderTraversal(root, level);

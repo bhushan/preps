@@ -51,10 +51,16 @@ function isBST(root, min, max) {
 
 // console.log({ tree: JSON.stringify(validRootNode, null, 4) });
 console.log({
-  isBST: isBST(validBSTRootNode, Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER),
+  exptected: true,
+  isBST: isBST(
+    validBSTRootNode,
+    Number.MIN_SAFE_INTEGER,
+    Number.MAX_SAFE_INTEGER
+  ),
 });
 // console.log({tree: JSON.stringify(invalidRootNode, null, 4)});
 console.log({
+  exptected: false,
   isBST: isBST(
     invalidBSTRootNode,
     Number.MIN_SAFE_INTEGER,
