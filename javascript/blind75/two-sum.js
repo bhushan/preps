@@ -22,12 +22,12 @@
 
 // O(n^2) solution
 const twoSumBruteForce = (nums, target) => {
-  for (let index = 0; index < nums.length; index++) {
-    const numOne = nums[index];
-    for (let j = index + 1; j < nums.length; j++) {
+  for (let i = 0; i < nums.length; i++) {
+    const numOne = nums[i];
+    for (let j = i + 1; j < nums.length; j++) {
       const numTwo = nums[j];
       if (numOne + numTwo == target) {
-        return [index, j];
+        return [i, j];
       }
     }
   }
@@ -55,14 +55,14 @@ console.log({
 
 const twoSum = (nums, target) => {
   const map = new Map();
-  for (let index = 0; index < nums.length; index++) {
-    const num = nums[index];
+  for (let i = 0; i < nums.length; i++) {
+    const num = nums[i];
     const diff = target - num;
     if (map.has(diff)) {
-      return [map.get(diff), index];
+      return [map.get(diff), i];
     } else {
       // JS MAP searches based on 'key', so we store number as key and index as value
-      map.set(num, index);
+      map.set(num, i);
     }
   }
 
