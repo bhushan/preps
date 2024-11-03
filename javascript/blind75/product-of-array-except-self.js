@@ -15,7 +15,6 @@
 //
 // Input: nums = [-1,1,0,-3,3]
 // Output: [0,0,9,0,0]
-//  
 //
 // Constraints:
 //
@@ -43,7 +42,6 @@ const productExceptSelfBruteForce = (nums) => {
 
     return result;
 }
-
 
 let nums = [1, 2, 3, 4];
 // console.log({ expected: [24, 12, 8, 6], result: productExceptSelfBruteForce(nums) });
@@ -86,8 +84,6 @@ const productExceptSelfWithMoreSpace = (nums) => {
 // nums = [-1, 1, 0, -3, 3]
 //
 // console.log({ expected: [0, 0, 9, 0, 0], result: productExceptSelfWithMoreSpace(nums) });
-
-
 
 // Time: O(n)
 // Space: O(1)
