@@ -88,18 +88,18 @@ const productExceptSelfWithMoreSpace = (nums) => {
 // Time: O(n)
 // Space: O(1)
 const productExceptSelf = (nums) => {
-    const n = nums.length;
-    const ans = new Array(n).fill(1);
+    const ans = [];
 
-    for (let i = 1; i < n; i++) {
-        ans[i] = ans[i - 1] * nums[i - 1];
+    let prefix = 1;
+    for (let i = 0; i < nums.length; i++) {
+        ans[i] = prefix;
+        prefix *= nums[i];
     }
 
-    let suffix = 1; // We need this to backtrack previous suffix
-
-    for (let i = n - 2; i >= 0; i--) {
-        suffix *= nums[i + 1];
+    let suffix = 1;
+    for (let i = nums.length - 1; i >= 0; i--) {
         ans[i] *= suffix;
+        suffix *= nums[i];
     }
 
     return ans;
