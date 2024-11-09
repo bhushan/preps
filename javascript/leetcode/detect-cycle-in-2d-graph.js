@@ -9,40 +9,36 @@
 
 // TC: O(n*m)
 // SC: O(n*m)
-var containsCycle = function(grid) {
-    const gridRowLength = grid.length;
-    const gridColLength = grid[0].length;
-    const isVisited = new Set();
+var containsCycle = (grid) => {
+    const m = grid.length;
+    const n = grid[0].length;
+    const visited = Array.from({ length: m }, () => new Array(n).fill(false));
+    const directions = [[0, 1], [1, 0], [0, -1], [-1, 0]];
 
-    const isCycle = ({ row, col, value, preRow, preCol }) => {
-        if (row < 0 || col < 0 || row >= gridRowLength || col >= gridColLength) return false;
+    function dfs(x, y, prevX, prevY, value) {
+        if (visited[x][y]) return true;
 
-        const current = grid[row][col];
+        visited[x][y] = true;
 
-        if (current !== value) return false;
+        for (const [dx, dy] of directions) {
+            const nx = x + dx;
+            const ny = y + dy;
 
-        if (isVisited.has(`${row}_${col}`)) return true;
-
-        isVisited.add(`${row}_${col}`);
-
-        for (let move of [-1, 1]) {
-            if (row + move !== preRow) {
-                if (isCycle({ row: row + move, col, value, preRow: row, preCol: col })) return true;;
-            }
-
-            if (col + move !== preCol) {
-                if (isCycle({ row, col: col + move, value, preRow: row, preCol: col })) return true;
+            if (nx >= 0 && nx < m && ny >= 0 && ny < n && grid[nx][ny] === value && !(nx === prevX && ny === prevY)) {
+                if (visited[nx][ny] || dfs(nx, ny, x, y, value)) {
+                    return true;
+                }
             }
         }
+
         return false;
-    };
+    }
 
-    for (let row = 0; row < gridRowLength; row++) {
-        for (let col = 0; col < gridColLength; col++) {
-            if (isVisited.has(`${row}_${col}`)) continue;
-            let value = grid[row][col]
-
-            if (isCycle({ row, col, value, preRow: -1, preCol: -1 })) return true;
+    for (let i = 0; i < m; i++) {
+        for (let j = 0; j < n; j++) {
+            if (!visited[i][j] && dfs(i, j, -1, -1, grid[i][j])) {
+                return true;
+            }
         }
     }
 
