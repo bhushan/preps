@@ -4,15 +4,11 @@
 // -1 if word is not from words, or
 // an integer representing the number of exact matches (value and position) of your guess to the secret word.
 // There is a parameter allowedGuesses for each test case where allowedGuesses is the maximum number of times you can call Master.guess(word).
-//
 // For each test case, you should call Master.guess with the secret word without exceeding the maximum number of allowed guesses. You will get:
-//
 // "Either you took too many guesses, or you did not find the secret word." if you called Master.guess more than allowedGuesses times or if you did not call Master.guess with the secret word, or
 // "You guessed the secret word correctly." if you called Master.guess with the secret word with the number of calls to Master.guess less than or equal to allowedGuesses.
 // The test cases are generated such that you can guess the secret word with a reasonable strategy (other than using the bruteforce method).
-//
 // Example 1:
-//
 // Input: secret = "acckzz", words = ["acckzz","ccbazz","eiowzz","abcczz"], allowedGuesses = 10
 // Output: You guessed the secret word correctly.
 // Explanation:
@@ -55,5 +51,30 @@
  * @return {void}
  */
 var findSecretWord = function(words, master) {
+    const countMatches = (wordOne, wordTwo) => {
+        let matcheCount = 0;
 
+        for (let i = 0; i < 6; i++) {
+            if (wordOne[i] === wordTwo[i]) {
+                matcheCount++
+            }
+            return matcheCount;
+        }
+    }
+
+    let remainingWords = [...words];
+
+    for (let i = 0; i < 10; i++) {
+        const guessWord = remainingWords[Math.floor(Math.random() * remainingWords.length)];
+
+        const numberOfCharactersMatched = master.guess(guessWord);
+
+        if (numberOfCharactersMatched === 6) return;
+
+        remainingWords = remainingWords.filter(word => countMatches(guessWord, word) === numberOfCharactersMatched);
+    }
 };
+
+// Time Complexity: O(10n) = O(n), beucase the for loop runs 10 or less times and in each iteration, we traverse the wordlist,
+// Space Complexity: O(10n) = O(n), because if all the words are uniquely matching number of characters, remaining word list will not filter out
+
