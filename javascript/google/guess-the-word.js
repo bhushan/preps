@@ -56,10 +56,11 @@ var findSecretWord = function(words, master) {
 
         for (let i = 0; i < 6; i++) {
             if (wordOne[i] === wordTwo[i]) {
-                matcheCount++
+                matcheCount++;
             }
-            return matcheCount;
         }
+
+        return matcheCount;
     }
 
     let remainingWords = [...words];
